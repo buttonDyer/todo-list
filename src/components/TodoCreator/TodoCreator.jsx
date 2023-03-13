@@ -1,33 +1,37 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
+import { useSnackbar } from 'notistack'
+import { useDispatch } from 'react-redux'
 
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
 
-import s from "./TodoCreator.module.scss";
+import { addTodo } from '../../store/todosSlice'
 
-function TodoCreator({ onSubmit }) {
-  const [title, setTitle] = useState("");
-  const [note, setNote] = useState("");
+import s from './TodoCreator.module.scss'
+
+function TodoCreator() {
+  const dispatch = useDispatch()
+  const { enqueueSnackbar } = useSnackbar()
+  const [title, setTitle] = useState('')
+  const [note, setNote] = useState('')
 
   const onTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
-  
+    setTitle(e.target.value)
+  }
   const onNoteChange = (e) => {
-    setNote(e.target.value);
-  };
+    setNote(e.target.value)
+  }
 
   const onSubmitLocal = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    onSubmit({
-      id: `${Date.now()} ${title}`,
-      title,
-      note,
-      dateCreation: new Date().toLocaleDateString(),
-      checked: false,
-    });
-  };
+    dispatch(addTodo({ title, note }))
+
+    enqueueSnackbar({
+      variant: 'success',
+      message: 'Your task was created',
+    })
+  }
 
   return (
     <form onSubmit={onSubmitLocal} className={s.formWrapper}>
@@ -49,7 +53,7 @@ function TodoCreator({ onSubmit }) {
         Save
       </Button>
     </form>
-  );
+  )
 }
 
-export default TodoCreator;
+export default TodoCreator

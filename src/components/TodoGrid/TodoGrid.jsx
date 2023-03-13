@@ -1,16 +1,16 @@
-import React from "react";
-import TodoCard from "../TodoCard";
+import React from 'react'
+import TodoCard from '../TodoCard'
 
-import s from "./TodoGrid.module.scss";
+import s from './TodoGrid.module.scss'
 
-function TodoGrid({ todos, checkTodo }) {
+function TodoGrid({ todos }) {
   return (
     <div className={s.grid}>
       {todos.map((elem) => (
-        <TodoCard key={elem.id} todo={elem} checkTodo={checkTodo} />
+        <TodoCard key={elem.id} todo={elem} />
       ))}
     </div>
-  );
+  )
 }
 
-export default TodoGrid;
+export default TodoGrid

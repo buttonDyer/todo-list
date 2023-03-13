@@ -1,16 +1,21 @@
-import React from "react";
-import { SnackbarProvider } from "notistack";
+import React from 'react'
+import { SnackbarProvider } from 'notistack'
+import { Provider } from 'react-redux'
 
-import MainPage from "./pages/MainPage";
+import MainPage from './pages/MainPage'
 
-import "./styles/main.scss";
+import { store } from './store'
+
+import './styles/main.scss'
 
 function App() {
   return (
-    <SnackbarProvider>
-      <MainPage />
-    </SnackbarProvider>
-  );
+    <Provider store={store}>
+      <SnackbarProvider>
+        <MainPage />
+      </SnackbarProvider>
+    </Provider>
+  )
 }
 
-export default App;
+export default App
