@@ -1,0 +1,46 @@
+.todoCard {
+  width: 100%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+
+  transition: 0.3s;
+
+  &.checked {
+    background-color: hsla(123, 41%, 45%, 1);
+    color: white;
+    text-decoration: line-through;
+
+    .button {
+      color: white;
+    }
+  }
+}
+.title {
+  font-size: 18px;
+  font-weight: 700;
+}
+.note {
+  margin-top: 10px;
+}
+
+.controlPart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 10px;
+  align-self: flex-end;
+}
+.button {
+  transition: 0.3s;
+
+  &:hover{
+    transform: translateY(-2px);
+  }
+}
+.date {
+}
