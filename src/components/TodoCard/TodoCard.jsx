@@ -1,39 +1,78 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useSnackbar } from 'notistack'
+import { useState } from 'react'
 
 import CheckIcon from '@mui/icons-material/Check'
 import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
+import SaveIcon from '@mui/icons-material/Save'
 
-import { checkTodo, moveToTrash } from '../../store/todosSlice'
+import { checkTodo, moveToTrash, editTodo } from '../../store/todosSlice'
 
 import s from './TodoCard.module.scss'
 
 function TodoCard({ todo }) {
   const dispatch = useDispatch()
   const { enqueueSnackbar } = useSnackbar()
+  const [title, setTitle] = useState(todo.title)
+  const [note, setNote] = useState(todo.note)
+  const [isEditable, setIsEditable] = useState(false)
 
   const onCheck = () => {
     dispatch(checkTodo({ id: todo.id }))
 
     enqueueSnackbar({
-      variant: 'success',
-      message: 'Задачка была успешно выполнена',
+      variant: 'info',
+      message: 'Task status changed',
     })
   }
 
   const onDelete = () => {
     dispatch(moveToTrash({ id: todo.id }))
     enqueueSnackbar({
-      variant: 'success',
-      message: 'Задачка была успешно выполнена',
+      variant: 'error ',
+      message: 'Task deleted',
     })
+  }
+
+  const onSave = () => {
+    dispatch(
+      editTodo({
+        id: todo.id,
+        title,
+        note,
+      })
+    )
+    setIsEditable(false)
+  }
+
+  const handleTitleChange = (event) => {
+    setTitle(event.target.textContent)
+  }
+
+  const handleNoteChange = (event) => {
+    setNote(event.target.textContent)
   }
 
   return (
     <div className={`${s.todoCard} ${todo.checked ? s.checked : ''}`}>
-      <div className={s.title}>{todo.title}</div>
-      <div className={s.note}>{todo.note}</div>
+      <div
+        contentEditable={isEditable}
+        suppressContentEditableWarning={true}
+        onInput={handleTitleChange}
+        className={s.title}
+      >
+        {todo.title}
+      </div>
+      <div
+        className={s.note}
+        contentEditable={isEditable}
+        suppressContentEditableWarning={true}
+        onInput={handleNoteChange}
+      >
+        {todo.note}
+      </div>
       <div className={s.controlPart}>
         <div className={s.buttons}>
           <button type="button" onClick={onCheck} className={s.button}>
@@ -42,6 +81,21 @@ function TodoCard({ todo }) {
           <button type="button" onClick={onDelete} className={s.button}>
             <DeleteIcon />
           </button>
+          {isEditable ? (
+            <>
+              <button type="button" onClick={onSave} className={s.button}>
+                <SaveIcon />
+              </button>
+            </>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setIsEditable(true)}
+              className={s.button}
+            >
+              <EditIcon />
+            </button>
+          )}
         </div>
         <div className={s.date}>{todo.dateCreation}</div>
       </div>

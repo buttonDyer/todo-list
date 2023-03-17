@@ -9,7 +9,7 @@
   transition: 0.3s;
 
   &.checked {
-    background-color: hsla(123, 41%, 45%, 1);
+    background-color: hsla(207, 90%, 54%, 1);
     color: white;
     text-decoration: line-through;
 
@@ -35,12 +35,16 @@
   margin-top: 10px;
   align-self: flex-end;
 }
+
 .button {
+  margin-right: 10px;
   transition: 0.3s;
 
-  &:hover{
+
+  &:hover {
     transform: translateY(-2px);
   }
 }
+
 .date {
 }

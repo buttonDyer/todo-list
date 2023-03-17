@@ -42,9 +42,19 @@ const TodosSlice = createSlice({
       localStorage.setItem('todos', JSON.stringify(state.todos)) // сохраняем в localStorage
       localStorage.setItem('trash', JSON.stringify(state.todos)) // сохраняем в localStorage
     },
+    editTodo(state, action) {
+      const { id, title, note } = action.payload
+      state.todos = state.todos.map((elem) => {
+        if (elem.id === id) {
+          return { ...elem, title, note }
+        }
+        return elem
+      })
+      localStorage.setItem('todos', JSON.stringify(state.todos))
+    },
   },
 })
 
-export const { addTodo, checkTodo, moveToTrash } = TodosSlice.actions
+export const { addTodo, checkTodo, moveToTrash, editTodo } = TodosSlice.actions
 
 export default TodosSlice.reducer

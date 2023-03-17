@@ -29,7 +29,7 @@ function TodoCreator() {
 
     enqueueSnackbar({
       variant: 'success',
-      message: 'Your task was created',
+      message: 'Task created',
     })
   }
 
