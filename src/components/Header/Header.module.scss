@@ -1,4 +1,4 @@
-@import "~/src/styles/variables";
+@import '~/src/styles/variables';
 
 .header {
   background-color: white;
@@ -21,13 +21,17 @@
   max-width: 1802px;
   padding: 0 20px;
   margin: 0 auto;
-
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 }
 
 .header {
   font-size: 30px;
   font-weight: 500;
+}
+
+.link {
+  color: black;
 }

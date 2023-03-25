@@ -1,16 +1,16 @@
 .formWrapper {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    max-width: 688px;
-    gap: 20px;
-    background-color: hsla(0, 0%, 100%, 1);
-    padding: 15px;
-    margin-top: 60px;
-  }
-  
-  .formButton {
-    width: 100%;
-    max-width: 200px;
-    align-self: flex-end;
-  }
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 688px;
+  gap: 20px;
+  background-color: hsla(0, 0%, 100%, 1);
+  padding: 15px;
+  margin-top: 60px;
+}
+
+.formButton {
+  width: 100%;
+  max-width: 200px;
+  align-self: flex-end;
+}

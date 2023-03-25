@@ -45,6 +45,10 @@ function TodoCard({ todo }) {
       })
     )
     setIsEditable(false)
+    enqueueSnackbar({
+      variant: 'success',
+      message: 'Edits saved',
+    })
   }
 
   const handleTitleChange = (event) => {
@@ -59,7 +63,6 @@ function TodoCard({ todo }) {
     <div className={`${s.todoCard} ${todo.checked ? s.checked : ''}`}>
       <div
         contentEditable={isEditable}
-        suppressContentEditableWarning={true}
         onInput={handleTitleChange}
         className={s.title}
       >
@@ -68,7 +71,6 @@ function TodoCard({ todo }) {
       <div
         className={s.note}
         contentEditable={isEditable}
-        suppressContentEditableWarning={true}
         onInput={handleNoteChange}
       >
         {todo.note}

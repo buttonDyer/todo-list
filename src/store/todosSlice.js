@@ -40,7 +40,7 @@ const TodosSlice = createSlice({
         return true
       })
       localStorage.setItem('todos', JSON.stringify(state.todos)) // сохраняем в localStorage
-      localStorage.setItem('trash', JSON.stringify(state.todos)) // сохраняем в localStorage
+      localStorage.setItem('trash', JSON.stringify(state.trash)) // сохраняем в localStorage
     },
     editTodo(state, action) {
       const { id, title, note } = action.payload
